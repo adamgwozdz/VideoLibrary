@@ -32,7 +32,8 @@ class TrendingFragment: BaseFragment(), TrendingView.Listener {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        container?.removeAllViews()
         view = viewFactory.newTrendingView(container)
         return view.rootView
     }

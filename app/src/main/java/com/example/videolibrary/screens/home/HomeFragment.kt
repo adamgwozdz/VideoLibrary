@@ -31,6 +31,7 @@ class HomeFragment(): BaseFragment(), HomeView.Listener {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        container?.removeAllViews()
         view = viewFactory.newHomeView(container)
         return view.rootView
     }
@@ -38,6 +39,16 @@ class HomeFragment(): BaseFragment(), HomeView.Listener {
     override fun onStart() {
         super.onStart()
         getTrendingTvSeries()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        view.unregisterListener(this)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
     }
 
     private fun getTrendingTvSeries() {

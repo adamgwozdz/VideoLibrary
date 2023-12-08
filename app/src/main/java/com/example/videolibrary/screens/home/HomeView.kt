@@ -77,7 +77,6 @@ class HomeView(
         }
 
         override fun getItemCount(): Int {
-            val x = 10
             return tvSeriesList.size
         }
 
