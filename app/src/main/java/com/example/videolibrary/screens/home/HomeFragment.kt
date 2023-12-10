@@ -39,6 +39,7 @@ class HomeFragment(): BaseFragment(), HomeView.Listener {
     override fun onStart() {
         super.onStart()
         getTrendingTvSeries()
+        getTrendingTvSeries1()
     }
 
     override fun onStop() {
@@ -53,5 +54,9 @@ class HomeFragment(): BaseFragment(), HomeView.Listener {
 
     private fun getTrendingTvSeries() {
         viewModel.tvSeries.observe(this) { tvSeries -> view.bindTvSeries(tvSeries) }
+    }
+
+    private fun getTrendingTvSeries1() {
+        viewModel.tvSeries1.observe(this) { tvSeries -> view.bindTvSeries1(tvSeries) }
     }
 }

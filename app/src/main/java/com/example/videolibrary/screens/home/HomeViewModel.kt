@@ -19,13 +19,23 @@ class HomeViewModel @Inject constructor(
     private val _tvSeries: MutableLiveData<List<TvSeries>> = savedStateHandle.getLiveData("tvSeries")
     val tvSeries: LiveData<List<TvSeries>> = _tvSeries
 
+    private val _tvSeries1: MutableLiveData<List<TvSeries>> = savedStateHandle.getLiveData("tvSeries1")
+    val tvSeries1: LiveData<List<TvSeries>> = _tvSeries1
+
     init {
         viewModelScope.launch {
             val result = trendingTvSeriesUseCase.fetchWeekTrendingTv()
             if (result is TrendingTvSeriesUseCase.Result.Success) {
                 _tvSeries.value = result.trendingTvSeries
             } else {
-                Log.i("Api Error", "${this.javaClass.kotlin} fetch failed")
+                Log.i("Logged Error", "${this.javaClass.kotlin} - fetch failed")
+            }
+
+            val result1 = trendingTvSeriesUseCase.fetchDayTrendingTv()
+            if (result1 is TrendingTvSeriesUseCase.Result.Success) {
+                _tvSeries1.value = result1.trendingTvSeries
+            } else {
+                Log.i("Logged Error", "${this.javaClass.kotlin} - fetch failed")
             }
         }
     }

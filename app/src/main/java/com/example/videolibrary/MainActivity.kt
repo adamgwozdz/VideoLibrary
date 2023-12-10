@@ -14,6 +14,8 @@ import com.example.videolibrary.screens.home.HomeFragment
 import com.example.videolibrary.screens.tending.TrendingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView.LABEL_VISIBILITY_UNLABELED
+import io.realm.kotlin.Realm
+import io.realm.kotlin.RealmConfiguration
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -74,6 +76,6 @@ class MainActivity: BaseActivity() {
     }
 
     private fun onFetchFailed() {
-        Log.e("Api Error", "${this.javaClass.kotlin} - fetch failed")
+        Log.e("Logged Error", "${this.javaClass.kotlin} - fetch failed")
     }
 }

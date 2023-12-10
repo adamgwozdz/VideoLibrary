@@ -72,7 +72,6 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // Local data
-    //noinspection KaptUsageInsteadOfKsp
     implementation("io.realm.kotlin:library-base:1.13.0")
 
     // Image loading
