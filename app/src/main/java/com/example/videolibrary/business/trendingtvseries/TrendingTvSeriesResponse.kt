@@ -2,7 +2,7 @@ package com.example.videolibrary.business.trendingtvseries
 
 import java.io.Serializable
 
-data class TrendingTvSeries(
+data class TrendingTvSeriesResponse(
     val page: Int,
     val results: List<TvSeries>,
     val totalPages: Int,

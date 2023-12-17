@@ -35,8 +35,8 @@ class TrendingTvSeriesUseCase @Inject constructor(
                     if (isDataSaved(DAY)) {
                         return@withContext Result.Success(load(DAY))
                     } else {
-                        save(response.body()!!.trendingTvSeries.results, DAY)
-                        return@withContext Result.Success(response.body()!!.trendingTvSeries.results)
+                        save(response.body()!!.trendingTvSeriesResponse.results, DAY)
+                        return@withContext Result.Success(response.body()!!.trendingTvSeriesResponse.results)
                     }
                 } else {
                     Log.e("Logged Error", "failed - fetchWeekTrendingTv")
@@ -62,8 +62,8 @@ class TrendingTvSeriesUseCase @Inject constructor(
                     if (isDataSaved(WEEK)) {
                         return@withContext Result.Success(load(WEEK))
                     } else {
-                        save(response.body()!!.trendingTvSeries.results, WEEK)
-                        return@withContext Result.Success(response.body()!!.trendingTvSeries.results)
+                        save(response.body()!!.trendingTvSeriesResponse.results, WEEK)
+                        return@withContext Result.Success(response.body()!!.trendingTvSeriesResponse.results)
                     }
                 } else {
                     Log.e("Logged Error", "failed - fetchWeekTrendingTv")

@@ -1,6 +1,6 @@
 package com.example.videolibrary.networking
 
-import com.example.videolibrary.business.trendingtvseries.TrendingTvSeries
+import com.example.videolibrary.business.trendingtvseries.TrendingTvSeriesResponse
 import com.example.videolibrary.business.trendingtvseries.TvSeries
 import com.google.gson.annotations.SerializedName
 
@@ -10,13 +10,14 @@ data class TrendingTvSeriesResponseSchema(
     @SerializedName("total_pages") val totalPages: Int,
     @SerializedName("total_results") val totalResults: Int
 ) {
-    val trendingTvSeries: TrendingTvSeries get() = TrendingTvSeries(page, results.map { it.result }, totalPages, totalResults)
+    val trendingTvSeriesResponse: TrendingTvSeriesResponse get() = TrendingTvSeriesResponse(
+        page = page, results = results.map { it.results }, totalPages = totalPages, totalResults = totalResults)
 }
 
 data class TrendingTvSeriesSchema(
+    @SerializedName("id") val id: Long,
     @SerializedName("adult") val adult: Boolean,
     @SerializedName("backdrop_path") val backdropPath: String?,
-    @SerializedName("id") val id: Long,
     @SerializedName("name") val name: String,
     @SerializedName("original_language") val originalLanguage: String,
     @SerializedName("original_name") val originalName: String,
@@ -30,6 +31,8 @@ data class TrendingTvSeriesSchema(
     @SerializedName("vote_count") val voteCount: Int,
     @SerializedName("origin_country") val originCountry: List<String>
 ) {
-    val result: TvSeries get() = TvSeries(adult, backdropPath, id, name, originalLanguage, originalName, overview,
-        posterPath, mediaType, genreIds, popularity, firstAirDate, voteAverage, voteCount, originCountry)
+    val results: TvSeries get() = TvSeries(id = id, adult = adult, backdropPath = backdropPath, name = name,
+        originalLanguage = originalLanguage, originalName = originalName, overview = overview, posterPath = posterPath,
+        mediaType = mediaType, genreIds = genreIds, popularity = popularity, firstAirDate = firstAirDate,
+        voteAverage = voteAverage, voteCount = voteCount, originCountry = originCountry)
 }
