@@ -38,3 +38,5 @@ gradle/
 
 #NDK
 obj/
+
+deploymentTargetDropDown.xml
