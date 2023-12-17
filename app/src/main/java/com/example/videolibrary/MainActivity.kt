@@ -2,26 +2,18 @@ package com.example.videolibrary
 
 import android.os.Bundle
 import android.util.Log
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import com.example.videolibrary.business.tvseries.TvSeriesUseCase
-import com.example.videolibrary.databinding.LayoutFrameBinding
 import com.example.videolibrary.screens.common.ScreensNavigator
 import com.example.videolibrary.screens.common.activities.BaseActivity
 import com.example.videolibrary.screens.home.HomeFragment
 import com.example.videolibrary.screens.tending.TrendingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView.LABEL_VISIBILITY_UNLABELED
-import io.realm.kotlin.Realm
-import io.realm.kotlin.RealmConfiguration
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainActivity: BaseActivity() {
@@ -33,16 +25,18 @@ class MainActivity: BaseActivity() {
 
     private lateinit var currentFragment: Fragment
 
-    private lateinit var binding: LayoutFrameBinding
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         injector.inject(this)
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.layout_frame)
+        setContentView(R.layout.layout_frame)
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation_view)
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .add(R.id.frame_content, TrendingFragment())
+                .add(R.id.frame_content, HomeFragment())
                 .commit()
         }
 
@@ -51,8 +45,8 @@ class MainActivity: BaseActivity() {
             .replace(R.id.frame_content, currentFragment)
             .commit()
 
-        binding.bottomNavigationView.labelVisibilityMode = LABEL_VISIBILITY_UNLABELED
-        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+        bottomNavigationView.labelVisibilityMode = LABEL_VISIBILITY_UNLABELED
+        bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> showFragment(HomeFragment())
                 R.id.navigation_trending -> showFragment(TrendingFragment())

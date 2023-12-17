@@ -1,7 +1,6 @@
 package com.example.videolibrary.screens.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import com.example.videolibrary.screens.common.ScreensNavigator
 import com.example.videolibrary.screens.common.dialogs.DialogsNavigator
 import com.example.videolibrary.screens.common.fragments.BaseFragment
 import com.example.videolibrary.screens.common.views.ViewFactory
-import com.example.videolibrary.screens.tending.TrendingView
 import com.example.videolibrary.screens.viewmodels.ViewModelFactory
 import javax.inject.Inject
 
@@ -38,8 +36,8 @@ class HomeFragment(): BaseFragment(), HomeView.Listener {
 
     override fun onStart() {
         super.onStart()
-        getTrendingTvSeries()
-        getTrendingTvSeries1()
+        view.registerListener(this)
+        getDailyTrendingTvSeries()
     }
 
     override fun onStop() {
@@ -52,11 +50,18 @@ class HomeFragment(): BaseFragment(), HomeView.Listener {
 
     }
 
-    private fun getTrendingTvSeries() {
+    private fun getDailyTrendingTvSeries() {
         viewModel.tvSeries.observe(this) { tvSeries -> view.bindTvSeries(tvSeries) }
     }
 
-    private fun getTrendingTvSeries1() {
-        viewModel.tvSeries1.observe(this) { tvSeries -> view.bindTvSeries1(tvSeries) }
+    private fun getWeeklyTrendingTvSeries1() {
+        viewModel.tvSeries1.observe(this) { tvSeries -> view.bindTvSeries(tvSeries) }
+    }
+
+    override fun onSwitchStateChanged(switchState: TrendingSwitchState) {
+        when (switchState) {
+            TrendingSwitchState.DAY_SELECTED -> getDailyTrendingTvSeries()
+            TrendingSwitchState.WEEK_SELECTED -> getWeeklyTrendingTvSeries1()
+        }
     }
 }

@@ -1,37 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="180dp"
+    android:layout_height="290dp"
+    android:layout_marginHorizontal="4dp">
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="180dp"
-        android:layout_height="290dp"
-        android:layout_marginHorizontal="4dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="UseCompoundDrawables">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/homeTvSeriesTrendingItemImage"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/home_trending_tvShow_image_contentDescription" />
+
+        <TextView
+            android:id="@+id/homeTvSeriesTrendingItemTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:ignore="UseCompoundDrawables">
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="4dp"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:maxLines="2"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="14sp" />
 
-            <ImageView
-                android:id="@+id/homeTvSeriesTrendingItemImage"
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:layout_gravity="center_horizontal"
-                android:contentDescription="@string/home_trending_tvShow_image_contentDescription" />
-
-            <TextView
-                android:id="@+id/homeTvSeriesTrendingItemTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginVertical="4dp"
-                android:ellipsize="end"
-                android:gravity="center_horizontal"
-                android:maxLines="2"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-</layout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
