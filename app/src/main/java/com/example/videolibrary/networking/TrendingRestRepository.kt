@@ -8,7 +8,7 @@ import retrofit2.http.Path
 interface TrendingRestRepository {
 
     /**
-     * timeWindow - "day" or "week"
+     * @param timeWindow - "day" or "week"
      */
     @GET("trending/tv/{time_window}?api_key=${Constants.API_KEY}")
     suspend fun getTrendingTv(
